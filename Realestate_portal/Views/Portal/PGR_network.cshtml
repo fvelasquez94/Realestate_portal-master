@@ -1,0 +1,240 @@
+﻿@model List<Realestate_portal.Models.Tb_Network>
+@{
+    ViewBag.Title = "Premium Group Realty - Network";
+    List<Realestate_portal.Models.Tb_Options> lstcategories = (List<Realestate_portal.Models.Tb_Options>)ViewBag.categories;
+}
+
+<div class="container-fluid" >
+    <!-- Begin Page Header-->
+    <div class="row">
+        <div class="page-header">
+            <div class="d-flex align-items-center">
+                <h2 class="page-header-title"></h2>
+                <div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="ti ti-home"></i></a></li>
+                        <li class="breadcrumb-item active">PGR NETWORK</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Begin Row -->
+
+
+    <div class="row">
+
+
+        <!-- Begin Widget Header -->
+        <!-- End Widget Header -->
+        <!-- Begin Widget Body -->
+        <div class="widget-body" style="width: 100%">
+
+            <div class="widget-header bordered d-flex align-items-center" style="border-bottom:0px !important;">
+                <div class="today">
+                    <div class="title">PGR NETWORK</div>
+                    <div class="new-tasks"></div>
+                </div><h2></h2>
+                <div class="widget-options">
+                    @if (ViewBag.rol == "Admin")
+            {
+                <a class="btn btn-shadow" href="#" data-toggle="modal" data-target="#modalNewvideo">Add Information</a>
+                <a class="btn btn-shadow" href="@Url.Action("PGR_network_management", "Portal")">Management</a>
+    }
+
+                </div>
+            </div><br /><br />
+            @foreach (var category in lstcategories) {
+            <label style="color:indianred;font-size:20px">@category.Description</label>
+            <div class="owl-carousel ">
+                @if (Model.Where(a => a.Category == category.Description).Count() > 0)
+        {
+            foreach (var item in Model.Where(a => a.Category == category.Description))
+            {
+
+                <div class="item disable-owl-swipe" style="margin-right:10px;">
+
+                    <div class="media" >
+                        <div class="media-left align-self-start">
+                            @if (item.T_image == "~/Content/Uploads/Images/Network/")
+                    {
+                        <img src="~/Content/assets/img/avatar/avatar-02.jpg" class="img-fluid" alt="">
+            }
+            else
+            {
+                <img src="@Url.Content(item.T_image)"  style="width:170px"  class="img-fluid" alt="">
+    }
+                        </div>
+                        <div class="media-body align-self-center" style="margin-left:20px !important">
+                            <div class="username">
+                                <h4>@item.Name</h4>
+                            </div>
+
+                            <div class="meta" >
+
+                                <textarea readonly class="mr-3" rows="9" style="width: 100% !important;background: transparent;border: none; outline: none;
+">@item.Description</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+    }
+}
+else
+{
+        <div class="item">
+            <label>No data to show</label>
+        </div>
+}
+
+
+            </div>
+            <hr />
+            }
+
+
+
+
+
+        </div>
+        <!-- End Widget Body -->
+
+
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Container -->
+
+<div id="modalNewvideo" class="modal fade">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add PGR Network</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">close</span>
+                </button>
+            </div>
+            <form id="htmlform" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Title *</label>
+                                <input type="text" class="form-control" id="titlevideo" required />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Category *</label>
+                                <select id="categoryvideo" class="form-control" required>
+                                    @foreach (var item in lstcategories)
+    {
+                                <option value="@item.Description">@item.Description</option>
+}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Description *</label>
+                                <textarea id="descriptionvideo" class="form-control" style="white-space: pre-line !important" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" id="imageUpload" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
+                    <button type="submit" id="subbtnenviar" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        $(".owl-carousel").owlCarousel({
+            center: false,
+            onInitialize: function (event) { if (event.item.count <= 4) { this.options.mouseDrag = false; this.options.touchDrag = false; } else { this.options.mouseDrag = true; this.options.touchDrag = true; } },
+            items: 2, dots: false, nav: true, loop: false, smartSpeed: 1000, navText: ['<i class="la la-angle-left" aria-hidden="true" style="font-size: 30px;"></i>', '<i  style="font-size: 30px;"class="la la-angle-right" aria-hidden="true"></i>'], responsive: { 768: { items: 3 } }
+        });
+
+        $('#htmlform').on('submit', function (event) {
+            $("#subbtnenviar").attr("disabled", true);
+            event.preventDefault();
+
+            $("#preloader").show();
+
+
+            var formData = new FormData();
+            var file = document.getElementById("imageUpload").files[0];
+
+            var title = $("#titlevideo").val();
+            var category = $("#categoryvideo").val();
+            var description = $.trim($("#descriptionvideo").val());
+            var url = "-";
+
+            formData.append("imageUploadForm", file);
+            formData.append("title", title);
+            formData.append("category", category);
+            formData.append("description", description);
+            formData.append("url", url);
+
+
+            $.ajax({
+                type: "POST",
+                url: '/Portal/UploadNetwork',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response == "SUCCESS") {
+                        $("#loader_form").hide();
+                        $("#subbtnenviar").attr("disabled", false);
+
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: 'Information added successfully',
+                            progressBar: true,
+                            timeout: 2500
+                        }).show()
+                        setTimeout(function () {
+                            window.location.reload(true);
+                        }, 2000);
+
+                    } else {
+                        $("#loader_form").hide();
+                        $("#subbtnenviar").attr("disabled", false);
+                        alert(response);
+                    }
+                },
+                error: function (error) {
+                    $("#loader_form").hide();
+                    $("#subbtnenviar").attr("disabled", false);
+                    alert("Error uploading information");
+                }
+            });
+
+
+
+
+        });
+
+    }
+</script>

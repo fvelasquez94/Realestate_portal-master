@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bfbd974f442b48808137e488c611a8b1" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="Realstate_agentsModel.Sys_Company" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Sys_Users" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Sys_Users_Sys_Company" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Sys_Notifications" Width="1.5" PointX="5.25" PointY="3.375" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Sys_Notifications_Sys_Users" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Resources" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Videos" Width="1.5" PointX="3" PointY="20.5" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Webinars" Width="1.5" PointX="3" PointY="12.5" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Resources_Sys_Company" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Videos_Sys_Company" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Webinars_Sys_Company" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Docpackages" Width="1.5" PointX="3" PointY="25.75" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Docpackages_details" Width="1.5" PointX="5.25" PointY="26.125" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Docpackages_Sys_Company" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Docpackages_details_Tb_Docpackages" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Customers" Width="1.5" PointX="3" PointY="31.375" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Customers_Sys_Company" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Process" Width="1.5" PointX="5.25" PointY="31.375" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Process_Tb_Customers" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Quotes" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Notes" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Posts" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Marketing" Width="1.5" PointX="3" PointY="38.25" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Marketing_Sys_Company" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Network" Width="1.5" PointX="3" PointY="43.375" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Network_Sys_Company" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Options" Width="1.5" PointX="7.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
