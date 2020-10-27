@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Step_onoe";
+    Layout = "~/Views/Shared/_Layout_CD.cshtml";
+}
+
+
+@Html.Partial("~/Views/Shared/Header_customresources.cshtml")
+<div class="main-container">
+    <section class="switchable switchable--switch space--xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h2>Select a resource to start.</h2>
+                    <p class="lead">
+                        Lorem ipsum isrum ipsum as lerum lorem ipsum asret ipsum
+                    </p>
+                    <a href="@Url.Action("Index","CustomResources")" class="col-form-label-lg">Back</a>
+
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <section class="space--sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="masonry masonry--tiles">
+                        <div class="masonry-filter-container d-flex align-items-center">
+                            <span>Category:</span>
+                            <div class="masonry-filter-holder">
+                                <div class="masonry__filters" data-filter-all-text="All Categories"></div>
+                            </div>
+                        </div>
+                        <div class="masonry__container row">
+                            <div class="masonry__item col-lg-3 col-md-6"></div>
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Business Card">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("BusinessCard","CustomResources", new { type="BusinessCard"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("BusinessCard","CustomResources", new { type="BusinessCard"})">
+                                        <div>
+                                            <h5>Business Card</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Door Hanger">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("DoorHanger","CustomResources", new { type="DoorHanger"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("DoorHanger","CustomResources", new { type="DoorHanger"})">
+                                        <div>
+                                            <h5>Door Hanger</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Flyer">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("Flyer","CustomResources", new { type="Flyer"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("Flyer","CustomResources", new { type="Flyer"})">
+                                        <div>
+                                            <h5>Flyer</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="For Sale Sign">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("ForSaleSign","CustomResources", new { type="ForSaleSign"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("ForSaleSign","CustomResources", new { type="ForSaleSign"})">
+                                        <div>
+                                            <h5>For Sale Sign</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Frame Sign">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("FrameSign","CustomResources", new { type="FrameSign"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("FrameSign","CustomResources", new { type="FrameSign"})">
+                                        <div>
+                                            <h5>Frame Sign</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Open House Sign">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("OpenHouseSign","CustomResources", new { type="OpenHouseSign"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("OpenHouseSign","CustomResources", new { type="OpenHouseSign"})">
+                                        <div>
+                                            <h5>Open House Sign</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Rider">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("Rider","CustomResources", new { type="Rider"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("Rider","CustomResources", new { type="Rider"})">
+                                        <div>
+                                            <h5>Rider</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-lg-3 col-md-6" data-masonry-filter="Stand Up Banner">
+                                <div class="product product--tile bg--secondary text-center">
+                                    @*<span class="label">Sale</span>*@
+                                    <a href="@Url.Action("StandUpBanner","CustomResources", new { type="StandUpBanner"})">
+                                        <img alt="Image" src="img/product-small-1.png" />
+                                    </a>
+                                    <a class="block" href="@Url.Action("StandUpBanner","CustomResources", new { type="StandUpBanner"})">
+                                        <div>
+                                            <h5>Stand Up Banner</h5>
+
+                                        </div>
+                                        <div>
+
+                                            <span class="h4 inline-block">$0.00</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                        </div>
+                        <!--end masonry container-->
+                    </div>
+                    <!--end masonry-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    @Html.Partial("~/Views/Shared/Footer_customresources.cshtml")
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+    <i class="stack-interface stack-up-open-big"></i>
+</a>

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Step_onoe";
+    Layout = "~/Views/Shared/_Layout_CD.cshtml";
+}
+
+@Html.Partial("~/Views/Shared/Header_customresources.cshtml")
+
+<div class="main-container">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Cart Overview</h1>
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="@Url.Action("Index","CustomResources")">Store</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Step_one","CustomResources")">Templates</a>
+                        </li>
+                        <li>Cart Overview</li>
+                    </ol>
+                    <hr>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <section>
+        <div class="container">
+            <form class="cart-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="border--round">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Business Card</td>
+                                    <td>$0.00</td>
+                                    <td><input type="text" name="quantity" value="1" placeholder="QTY" /></td>
+
+                                    <td><button class="checkmark checkmark--cross bg--error"></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <!--end of row-->
+                <div class="row jusify-content-center">
+                    <div class="col-lg-2 text-right text-center-xs">
+                        <button type="submit" class="btn">Update Cart</button>
+                    </div>
+                </div>
+                <!--end of row-->
+                <div class="row mt--2">
+                    <div class="col-md-12">
+                        <div class="boxed boxed--border cart-total">
+                            <div class="row">
+                                <div class="col-6">
+                                    <span class="h5">Cart Subtotal:</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span>$0.00</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span class="h5">Shipping (US):</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span>$0.00</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-6">
+                                    <span class="h5">Total:</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span class="h5">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end of row-->
+                <div class="row justify-content-end">
+                    <div class="col-lg-2 text-right text-center-xs">
+                        <button type="submit" class="btn btn--primary">Proceed &raquo;</button>
+                    </div>
+                </div>
+                <!--end of row-->
+            </form>
+            <!--end cart form-->
+        </div>
+        <!--end of container-->
+    </section>
+    @Html.Partial("~/Views/Shared/Footer_customresources.cshtml")
+</div>
+
+
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+    <i class="stack-interface stack-up-open-big"></i>
+</a>

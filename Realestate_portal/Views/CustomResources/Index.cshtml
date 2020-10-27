@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_CD.cshtml";
+}
+<a id="start"></a>
+<div class="nav-container ">
+    <div class="bar bar--sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 col-md-2">
+                    <a href="#">
+                        <img  class="logo logo-dark" alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
+                        <img class="logo logo-light"  alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
+                    </a>
+                </div>
+                <div class="col-9 col-md-10 text-right">
+                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu2;hidden-xs hidden-sm">
+                        <i class="icon icon--sm stack-interface stack-menu"></i>
+                    </a>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </div>
+    <!--end bar-->
+    <nav id="menu2" class="bar bar-2 hidden-xs bar--absolute bar--transparent">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 text-center text-left-sm hidden-xs order-lg-2">
+                    <div class="bar__module">
+                        <a href="#">
+                            <img class="logo logo-dark"  style="width:175px;height: 308px !important; max-height: 75px !important;" alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
+                            <img class="logo logo-light" style="width:175px; height: 308px !important; max-height: 75px !important;"  alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
+                        </a>
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+    <!--end bar-->
+</div>
+<div class="main-container">
+    <section class="cover height-80 imagebg text-center parallax" data-overlay="5">
+        <div class="background-image-holder background--top">
+            <img alt="background" src="~/Content/assetsPD/img/blog-7.jpg" />
+        </div>
+        <div class="container pos-vertical-center">
+            <div class="row">
+                <div class="col-md-8">
+      
+                    <h3>
+                        Create your custom documents using our resources templates
+                    </h3>
+                    <a class="btn btn--primary type--uppercase" href="@Url.Action("Step_one","CustomResources")">
+                        <span class="btn__text">
+                            Start now
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <section class="border--bottom space--xxs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="modal-instance">
+                        <a class="btn type--uppercase modal-trigger" href="#">
+                            <span class="btn__text">
+                                &#9654; How to use
+                            </span>
+                        </a>
+                        <div class="modal-container">
+                            <div class="modal-content bg-dark" data-width="60%" data-height="60%">
+                                <iframe data-src="https://www.youtube.com/embed/6p45ooZOOPo?autoplay=1" allowfullscreen="allowfullscreen"></iframe>
+                            </div>
+                            <!--end of modal-content-->
+                        </div>
+                        <!--end of modal-container-->
+                    </div>
+                    <!--end of modal instance-->
+                    <span class="block--xs">See how you can create your customs designs using our own resource templates</span>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <section class="text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <h2>Steps to build your custom resources</h2>
+                    <p class="lead">
+                        Lorem ipsum isrip lupus umpseum lorem lorem bisu dubu
+                    </p>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <section class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature feature-6">
+                        <i class="icon icon--lg icon-Laughing color--primary"></i>
+                        <h4>Select a template</h4>
+                        <p>
+                            Stack comes with integration for Mail Chimp and Campaign Monitor forms - ideal for launching modern marketing campaigns
+                        </p>
+                    </div>
+                    <!--end feature-->
+                </div>
+                <div class="col-md-4">
+                    <div class="feature feature-6">
+                        <i class="icon icon--lg icon-Medical-Sign color--primary"></i>
+                        <h4>Edit and customize</h4>
+                        <p>
+                            Stack comes with integration for Mail Chimp and Campaign Monitor forms - ideal for launching modern marketing campaigns
+                        </p>
+                    </div>
+                    <!--end feature-->
+                </div>
+                <div class="col-md-4">
+                    <div class="feature feature-6">
+                        <i class="icon icon--lg icon-Finger-Print color--primary"></i>
+                        <h4>Confirm your order</h4>
+                        <p>
+                            Stack comes with integration for Mail Chimp and Campaign Monitor forms - ideal for launching modern marketing campaigns
+                        </p>
+                    </div>
+                    <!--end feature-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+
+
+    <footer class="text-center space--sm footer-5  ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.Action("Dashboard","Portal")">Back to the App</a>
+
+                    <div>
+                        <img alt="Image" class="flag" src="~/Content/pgrlogos/PGRLogo.png" /><br />
+                        <span class="type--fine-print">Powered by Premium Group Realty NY</span>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </footer>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+    <i class="stack-interface stack-up-open-big"></i>
+</a>
