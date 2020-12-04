@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Realstate_agentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="crTb_OrderDetails">
+          <Key>
+            <PropertyRef Name="ID_detail" />
+          </Key>
+          <Property Name="ID_detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Resource" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Style" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Size" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Company_name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Cellphone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Website" Type="varchar(max)" Nullable="false" />
+          <Property Name="Facebook_url" Type="varchar(max)" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="GroupQty" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ID_order" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ID_Company" Type="int" />
+        </EntityType>
+        <EntityType Name="crTb_Orders">
+          <Key>
+            <PropertyRef Name="ID_order" />
+          </Key>
+          <Property Name="ID_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="ID_user" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ID_Company" Type="int" />
+        </EntityType>
         <EntityType Name="Sys_Company">
           <Key>
             <PropertyRef Name="ID_Company" />
@@ -271,6 +304,23 @@
           <Property Name="ID_Company" Type="int" Nullable="false" />
           <Property Name="Extension_file" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tb_TemplatesCatalogo">
+          <Key>
+            <PropertyRef Name="ID_Template" />
+          </Key>
+          <Property Name="ID_Template" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Template_name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Resource" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Style" Type="int" Nullable="false" />
+          <Property Name="Broker_name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Url_image" Type="varchar(max)" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="ID_Company" Type="int" Nullable="false" />
+          <Property Name="htmltext" Type="varchar(max)" Nullable="false" />
+          <Property Name="original" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tb_Videos">
           <Key>
             <PropertyRef Name="ID_Video" />
@@ -307,6 +357,56 @@
           <Property Name="Url_video" Type="varchar(max)" Nullable="false" />
           <Property Name="Date_end" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK__crTb_Orde__ID_Co__6383C8BA">
+          <End Role="Sys_Company" Type="Self.Sys_Company" Multiplicity="0..1" />
+          <End Role="crTb_OrderDetails" Type="Self.crTb_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="crTb_OrderDetails">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__crTb_Orde__ID_Co__656C112C">
+          <End Role="Sys_Company" Type="Self.Sys_Company" Multiplicity="0..1" />
+          <End Role="crTb_Orders" Type="Self.crTb_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="crTb_Orders">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tb_Templa__ID_Co__73BA3083">
+          <End Role="Sys_Company" Type="Self.Sys_Company" Multiplicity="1" />
+          <End Role="Tb_TemplatesCatalogo" Type="Self.Tb_TemplatesCatalogo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="Tb_TemplatesCatalogo">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_crTb_OrderDetails_crTb_Orders">
+          <End Role="crTb_Orders" Type="Self.crTb_Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="crTb_OrderDetails" Type="Self.crTb_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="crTb_Orders">
+              <PropertyRef Name="ID_order" />
+            </Principal>
+            <Dependent Role="crTb_OrderDetails">
+              <PropertyRef Name="ID_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sys_Notifications_Sys_Users">
           <End Role="Sys_Users" Type="Self.Sys_Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -461,7 +561,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="list_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Realstate_agentsModelStoreContainer">
+          <EntitySet Name="crTb_OrderDetails" EntityType="Self.crTb_OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="crTb_Orders" EntityType="Self.crTb_Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sys_Company" EntityType="Self.Sys_Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sys_Notifications" EntityType="Self.Sys_Notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sys_Users" EntityType="Self.Sys_Users" Schema="dbo" store:Type="Tables" />
@@ -476,8 +579,25 @@
           <EntitySet Name="Tb_Process" EntityType="Self.Tb_Process" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_Quotes" EntityType="Self.Tb_Quotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_Resources" EntityType="Self.Tb_Resources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_TemplatesCatalogo" EntityType="Self.Tb_TemplatesCatalogo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_Videos" EntityType="Self.Tb_Videos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tb_Webinars" EntityType="Self.Tb_Webinars" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__crTb_Orde__ID_Co__6383C8BA" Association="Self.FK__crTb_Orde__ID_Co__6383C8BA">
+            <End Role="Sys_Company" EntitySet="Sys_Company" />
+            <End Role="crTb_OrderDetails" EntitySet="crTb_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__crTb_Orde__ID_Co__656C112C" Association="Self.FK__crTb_Orde__ID_Co__656C112C">
+            <End Role="Sys_Company" EntitySet="Sys_Company" />
+            <End Role="crTb_Orders" EntitySet="crTb_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tb_Templa__ID_Co__73BA3083" Association="Self.FK__Tb_Templa__ID_Co__73BA3083">
+            <End Role="Sys_Company" EntitySet="Sys_Company" />
+            <End Role="Tb_TemplatesCatalogo" EntitySet="Tb_TemplatesCatalogo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_crTb_OrderDetails_crTb_Orders" Association="Self.FK_crTb_OrderDetails_crTb_Orders">
+            <End Role="crTb_Orders" EntitySet="crTb_Orders" />
+            <End Role="crTb_OrderDetails" EntitySet="crTb_OrderDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sys_Notifications_Sys_Users" Association="Self.FK_Sys_Notifications_Sys_Users">
             <End Role="Sys_Users" EntitySet="Sys_Users" />
             <End Role="Sys_Notifications" EntitySet="Sys_Notifications" />
@@ -544,6 +664,9 @@
           <NavigationProperty Name="Tb_Customers" Relationship="Realstate_agentsModel.FK_Tb_Customers_Sys_Company" FromRole="Sys_Company" ToRole="Tb_Customers" />
           <NavigationProperty Name="Tb_Marketing" Relationship="Realstate_agentsModel.FK_Tb_Marketing_Sys_Company" FromRole="Sys_Company" ToRole="Tb_Marketing" />
           <NavigationProperty Name="Tb_Network" Relationship="Realstate_agentsModel.FK_Tb_Network_Sys_Company" FromRole="Sys_Company" ToRole="Tb_Network" />
+          <NavigationProperty Name="crTb_OrderDetails" Relationship="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2B0A656D" FromRole="Sys_Company" ToRole="crTb_OrderDetails" />
+          <NavigationProperty Name="crTb_Orders" Relationship="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2A164134" FromRole="Sys_Company" ToRole="crTb_Orders" />
+          <NavigationProperty Name="Tb_TemplatesCatalogo" Relationship="Realstate_agentsModel.FK__Tb_Templa__ID_Co__29221CFB" FromRole="Sys_Company" ToRole="Tb_TemplatesCatalogo" />
         </EntityType>
         <EntityType Name="Sys_Users">
           <Key>
@@ -669,6 +792,26 @@
             <End Role="Tb_Network" EntitySet="Tb_Network" />
           </AssociationSet>
           <EntitySet Name="Tb_Options" EntityType="Realstate_agentsModel.Tb_Options" />
+          <EntitySet Name="crTb_OrderDetails" EntityType="Realstate_agentsModel.crTb_OrderDetails" />
+          <EntitySet Name="crTb_Orders" EntityType="Realstate_agentsModel.crTb_Orders" />
+          <AssociationSet Name="FK_crTb_OrderDetails_crTb_Orders" Association="Realstate_agentsModel.FK_crTb_OrderDetails_crTb_Orders">
+            <End Role="crTb_Orders" EntitySet="crTb_Orders" />
+            <End Role="crTb_OrderDetails" EntitySet="crTb_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__crTb_Orde__ID_Co__2B0A656D" Association="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2B0A656D">
+            <End Role="Sys_Company" EntitySet="Sys_Company" />
+            <End Role="crTb_OrderDetails" EntitySet="crTb_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__crTb_Orde__ID_Co__2A164134" Association="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2A164134">
+            <End Role="Sys_Company" EntitySet="Sys_Company" />
+            <End Role="crTb_Orders" EntitySet="crTb_Orders" />
+          </AssociationSet>
+          <EntitySet Name="Tb_TemplatesCatalogo" EntityType="Realstate_agentsModel.Tb_TemplatesCatalogo" />
+          <AssociationSet Name="FK__Tb_Templa__ID_Co__29221CFB" Association="Realstate_agentsModel.FK__Tb_Templa__ID_Co__29221CFB">
+            <End Role="Sys_Company" EntitySet="Sys_Company" />
+            <End Role="Tb_TemplatesCatalogo" EntitySet="Tb_TemplatesCatalogo" />
+          </AssociationSet>
+          <FunctionImport Name="list_orders" ReturnType="Collection(Realstate_agentsModel.list_orders_Result)" />
         </EntityContainer>
         <EntityType Name="Sys_Notifications">
           <Key>
@@ -1067,6 +1210,117 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ID_Company" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="crTb_OrderDetails">
+          <Key>
+            <PropertyRef Name="ID_detail" />
+          </Key>
+          <Property Name="ID_detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Resource" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Style" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company_name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook_url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="GroupQty" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ID_order" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="crTb_Orders" Relationship="Realstate_agentsModel.FK_crTb_OrderDetails_crTb_Orders" FromRole="crTb_OrderDetails" ToRole="crTb_Orders" />
+          <Property Name="ID_Company" Type="Int32" />
+          <NavigationProperty Name="Sys_Company" Relationship="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2B0A656D" FromRole="crTb_OrderDetails" ToRole="Sys_Company" />
+        </EntityType>
+        <EntityType Name="crTb_Orders">
+          <Key>
+            <PropertyRef Name="ID_order" />
+          </Key>
+          <Property Name="ID_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_user" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="crTb_OrderDetails" Relationship="Realstate_agentsModel.FK_crTb_OrderDetails_crTb_Orders" FromRole="crTb_Orders" ToRole="crTb_OrderDetails" />
+          <Property Name="ID_Company" Type="Int32" />
+          <NavigationProperty Name="Sys_Company" Relationship="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2A164134" FromRole="crTb_Orders" ToRole="Sys_Company" />
+        </EntityType>
+        <Association Name="FK_crTb_OrderDetails_crTb_Orders">
+          <End Type="Realstate_agentsModel.crTb_Orders" Role="crTb_Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Realstate_agentsModel.crTb_OrderDetails" Role="crTb_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="crTb_Orders">
+              <PropertyRef Name="ID_order" />
+            </Principal>
+            <Dependent Role="crTb_OrderDetails">
+              <PropertyRef Name="ID_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__crTb_Orde__ID_Co__2B0A656D">
+          <End Type="Realstate_agentsModel.Sys_Company" Role="Sys_Company" Multiplicity="0..1" />
+          <End Type="Realstate_agentsModel.crTb_OrderDetails" Role="crTb_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="crTb_OrderDetails">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__crTb_Orde__ID_Co__2A164134">
+          <End Type="Realstate_agentsModel.Sys_Company" Role="Sys_Company" Multiplicity="0..1" />
+          <End Type="Realstate_agentsModel.crTb_Orders" Role="crTb_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="crTb_Orders">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tb_TemplatesCatalogo">
+          <Key>
+            <PropertyRef Name="ID_Template" />
+          </Key>
+          <Property Name="ID_Template" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Template_name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Resource" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Style" Type="Int32" Nullable="false" />
+          <Property Name="Broker_name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Url_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="ID_Company" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sys_Company" Relationship="Realstate_agentsModel.FK__Tb_Templa__ID_Co__29221CFB" FromRole="Tb_TemplatesCatalogo" ToRole="Sys_Company" />
+          <Property Name="htmltext" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="original" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Tb_Templa__ID_Co__29221CFB">
+          <End Type="Realstate_agentsModel.Sys_Company" Role="Sys_Company" Multiplicity="1" />
+          <End Type="Realstate_agentsModel.Tb_TemplatesCatalogo" Role="Tb_TemplatesCatalogo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="Tb_TemplatesCatalogo">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="list_orders_Result">
+          <Property Type="Int32" Name="ID_order" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1391,6 +1645,69 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="crTb_OrderDetails">
+            <EntityTypeMapping TypeName="Realstate_agentsModel.crTb_OrderDetails">
+              <MappingFragment StoreEntitySet="crTb_OrderDetails">
+                <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID_order" ColumnName="ID_order" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="GroupQty" ColumnName="GroupQty" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Facebook_url" ColumnName="Facebook_url" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Resource" ColumnName="Resource" />
+                <ScalarProperty Name="ID_detail" ColumnName="ID_detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="crTb_Orders">
+            <EntityTypeMapping TypeName="Realstate_agentsModel.crTb_Orders">
+              <MappingFragment StoreEntitySet="crTb_Orders">
+                <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID_order" ColumnName="ID_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_TemplatesCatalogo">
+            <EntityTypeMapping TypeName="Realstate_agentsModel.Tb_TemplatesCatalogo">
+              <MappingFragment StoreEntitySet="Tb_TemplatesCatalogo">
+                <ScalarProperty Name="original" ColumnName="original" />
+                <ScalarProperty Name="htmltext" ColumnName="htmltext" />
+                <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="Url_image" ColumnName="Url_image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Broker_name" ColumnName="Broker_name" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Resource" ColumnName="Resource" />
+                <ScalarProperty Name="Template_name" ColumnName="Template_name" />
+                <ScalarProperty Name="ID_Template" ColumnName="ID_Template" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="list_orders" FunctionName="Realstate_agentsModel.Store.list_orders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Realstate_agentsModel.list_orders_Result">
+                <ScalarProperty Name="ID_order" ColumnName="ID_order" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -129,7 +129,7 @@ namespace Realestate_portal.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ID_Company,Name,Web,ShortName")] Sys_Company sys_Company, HttpPostedFileBase logo, string email)
+        public ActionResult Create([Bind(Include = "ID_Company,Name,Web,ShortName")] Sys_Company sys_Company, HttpPostedFileBase logo, string email, string information)
         {
             sys_Company.Logo = "";
             if (sys_Company.Web == null) { sys_Company.Web = ""; }
@@ -226,8 +226,8 @@ namespace Realestate_portal.Controllers
                     {
                         //Enviamos correo para notificar
                         dynamic emailtosend = new Email("newBroker");
-                        emailtosend.To = brokeremail;
-                        emailtosend.From = "pgrwebsite2020@gmail.com";
+                        emailtosend.To = email;
+                        emailtosend.From = "customercare@premiumgrealty.com";
                         emailtosend.Send();
                     
                     }
@@ -241,6 +241,32 @@ namespace Realestate_portal.Controllers
                 {
                     
                 }
+
+                try {
+                    if (information == "Yes") {
+                        var videos = (from a in db.Tb_Videos where (a.ID_Company == 1) select a).ToList();
+                        videos.Select(c => { c.ID_Company = sys_Company.ID_Company; return c; }).ToList();
+                        db.Tb_Videos.AddRange(videos);
+                        db.SaveChanges();
+
+
+                        var marketing = (from a in db.Tb_Marketing where (a.ID_Company == 1) select a).ToList();
+                        marketing.Select(c => { c.ID_Company = sys_Company.ID_Company; return c; }).ToList();
+                        db.Tb_Marketing.AddRange(marketing);
+                        db.SaveChanges();
+
+                        var network = (from a in db.Tb_Network where (a.ID_Company == 1) select a).ToList();
+                        network.Select(c => { c.ID_Company = sys_Company.ID_Company; return c; }).ToList();
+                        db.Tb_Network.AddRange(network);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+
+                }
+
 
                 return RedirectToAction("Index", "Sys_Company");
             }

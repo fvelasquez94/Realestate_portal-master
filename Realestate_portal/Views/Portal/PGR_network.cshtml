@@ -124,8 +124,38 @@ else
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Title *</label>
+                                <label>Full Name *</label>
                                 <input type="text" class="form-control" id="titlevideo" required />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Company *</label>
+                                <input type="text" class="form-control" id="company" required />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Contact *</label>
+                                <input type="text" class="form-control" id="contact" required />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="text" class="form-control" id="email" required />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Website *</label>
+                                <input type="text" class="form-control" id="website" required />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Address *</label>
+                                <input type="text" class="form-control" id="address" required />
                             </div>
                         </div>
                         <div class="col-6">
@@ -133,8 +163,8 @@ else
                                 <label>Category *</label>
                                 <select id="categoryvideo" class="form-control" required>
                                     @foreach (var item in lstcategories)
-    {
-                                <option value="@item.Description">@item.Description</option>
+                {
+                    <option value="@item.Description">@item.Description</option>
 }
                                 </select>
                             </div>
@@ -185,6 +215,23 @@ else
 
             var title = $("#titlevideo").val();
             var category = $("#categoryvideo").val();
+
+
+            var company = $("#company").val();
+            var contact = $("#contact").val();
+            var email = $("#email").val();
+            var website = $("#website").val();
+            var address = $("#address").val();
+
+            var txtArea = document.getElementById("descriptionvideo");
+            txtArea.value = "";
+            txtArea.value += company + '\r\n';
+            txtArea.value += contact + '\r\n';
+            txtArea.value += email + '\r\n';
+            txtArea.value += website + '\r\n';
+            txtArea.value += address + '\r\n';
+
+
             var description = $.trim($("#descriptionvideo").val());
             var url = "-";
 

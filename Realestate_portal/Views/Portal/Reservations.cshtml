@@ -169,9 +169,11 @@
                                 <label>Resource *</label>
 
                                 <select class="form-control" id="title">
-                                    <option>Resource 1</option>
-                                    <option>Resource 2</option>
-                                    <option>Resource 3</option>
+                                    <option>Private Office BayShore 1</option>
+                                    <option>Private Office BayShore 2</option>
+                                    <option>Conference Room BayShore</option>
+                                    <option>Conference Room RVC</option>
+                                    <option>Private Office RVC</option>
 
                                 </select>
 
@@ -180,19 +182,25 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Start *</label>
-                                <input type="datetime-local" class="form-control" id="dateinit" required />
+                                <input type="datetime-local" class="form-control" id="dateinit"  required />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label>end *</label>
-                                <input type="datetime-local" class="form-control" id="dateend" required />
+                                <label>Time (max 2 hours) *</label>
+                                <select class="form-control" id="dateend">
+                                    <option value="30">30 minutes</option>
+                                    <option value="60">1 hour</option>
+                                    <option value="90">1:30 hours</option>
+                                    <option value="120">2 hours</option>
+                                </select>
+                                
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <span id="asignarhoralabel" style="display:none;" class="badge badge-warning">End hour can't be greater than start hour.</span>
-                        <span id="conflictolbl" style="display:none;" class="badge badge-warning">Resource not available.</span>
+                        <span id="conflictolbl" style="display:none;" class="badge badge-warning">Resource not available on this date and time.</span>
                     </div>
                     <div class="row" style="display:none">
                         <div class="col-12">
@@ -223,6 +231,8 @@
 <script type="text/javascript">
     window.onload = function () {
 
+
+
         $('#dateinit, #dateend').on('input', function () {
             evaluarDisponibilidad();
 
@@ -230,7 +240,7 @@
 
         $('#title').on('change', function () {
             evaluarDisponibilidad();
-            evaluarRangos()
+            //evaluarRangos()
         });
 
 
@@ -249,7 +259,15 @@
             var description = $.trim($("#description").val());
             var url = "";
             var date = $("#dateinit").val();
-            var datefin = $("#dateend").val();
+
+            var minutes = $("#dateend").val();
+
+            //start time
+            var start_time = new Date($("#dateinit").val());
+
+            var end_time = moment(start_time).add(minutes, 'm').toDate();
+
+            var datefin = end_time;
 
 
             $.ajax({
@@ -303,20 +321,24 @@
             //Evaluar Disponibilidad
     function evaluarDisponibilidad() {
         try {
+
+            var minutes = $("#dateend").val();
+
             //start time
             var start_time = new Date($("#dateinit").val());
 
-            //end time
-            var end_time = new Date($("#dateend").val());
+            var end_time = moment(start_time).add(minutes, 'm').toDate();
 
             var title = $("#title").val();
-            if (start_time >= end_time) {
 
-                $("#asignarhoralabel").show();
-                $("#conflictolbl").hide();
 
-                return false;
-            } else {
+            //if (start_time >= end_time) {
+
+            //    $("#asignarhoralabel").show();
+            //    $("#conflictolbl").hide();
+
+            //    return false;
+            //} else {
 
                 $("#asignarhoralabel").hide();
 
@@ -348,7 +370,7 @@
                         
                         },
                     });
-            }
+           // }
         } catch{
 
         }
@@ -358,6 +380,9 @@
 
         
     }
+
+   
+
     function evaluarRangos() {
 
         var st = new Date($('#dateinit').val());

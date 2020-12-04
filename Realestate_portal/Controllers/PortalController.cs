@@ -96,7 +96,7 @@ namespace Realestate_portal.Controllers
                                 //Enviamos correo para notificar
                                 dynamic emailtosend = new Email("newpackage_notification");
                                 emailtosend.To = brokeremail;
-                                emailtosend.From = "pgrwebsite2020@gmail.com";
+                                emailtosend.From = "customercare@premiumgrealty.com";
                                 emailtosend.subject = "New documents Package from " + activeuser.Name + " " + activeuser.LastName + "  - PGR Agents Portal";
                                 emailtosend.Attach(new Attachment(zippackage));
                                 emailtosend.Send();
@@ -435,7 +435,7 @@ namespace Realestate_portal.Controllers
                         //Send the email
                         dynamic semail = new Email("reset_password");
                         semail.To = User.Email.ToString();
-                        semail.From = "pgrwebsite2020@gmail.com";
+                        semail.From = "customercare@premiumgrealty.com";
                         semail.user = User.Name + " " + User.LastName;
                         semail.email = User.Email;
                         semail.password = User.Password;
@@ -1332,8 +1332,8 @@ namespace Realestate_portal.Controllers
             List<Tb_Webinars> lst_planificacion = new List<Tb_Webinars>();
             lst_planificacion = (from a in db.Tb_Webinars
                                  where (a.Title == resource)
-                                 where (horafin > a.Date)
-                                 where (horainicio < a.Date_end)
+                                 where (horafin >= a.Date)
+                                 where (horainicio <= a.Date_end)
                                  select a).ToList();
             string result = "0";
             if (lst_planificacion.Count > 0) {
@@ -1372,30 +1372,58 @@ namespace Realestate_portal.Controllers
                 db.Tb_Webinars.Add(newebinar);
                 db.SaveChanges();
 
-                //try
-                //{//Enviamos notificaciones  a todos los agentes
-                //    var agents = (from a in db.Sys_Users where (a.Active == true) select a).ToList();
+                try
+                {//Enviamos notificaciones  a todos los Admin y SA
+                    var agents = (from a in db.Sys_Users where (a.Active == true && a.ID_Company==activeuser.ID_Company && a.Roles.Contains("Admin") || a.Roles.Contains("SA")) select a).ToList();
 
-                //    if (agents.Count > 0)
-                //    {
-                //        foreach (var item in agents)
-                //        {
-                //            Sys_Notifications newnotification = new Sys_Notifications();
-                //            newnotification.Active = true;
-                //            newnotification.Date = DateTime.UtcNow;
-                //            newnotification.Title = "New webinar.";
-                //            newnotification.Description = "A new webinar was added and will take place on " + newebinar.Date.ToLongDateString();
-                //            newnotification.ID_user = item.ID_User;
-                //            db.Sys_Notifications.Add(newnotification);
-                //        }
-                //        db.SaveChanges();
-                //    }
+                    if (agents.Count > 0)
+                    {
+                        foreach (var item in agents)
+                        {
+                            Sys_Notifications newnotification = new Sys_Notifications();
+                            newnotification.Active = true;
+                            newnotification.Date = DateTime.UtcNow;
+                            newnotification.Title = "New Booking.";
+                            newnotification.Description = "A new booking was added on " + newebinar.Date.ToShortDateString();
+                            newnotification.ID_user = item.ID_User;
+                            db.Sys_Notifications.Add(newnotification);
 
-                //}
-                //catch
-                //{
+                            try
+                            {
+                                var brokeremail = item.Email;
 
-                //}
+                                if (brokeremail != null && brokeremail != "")
+                                {
+                                    //Enviamos correo para notificar
+                                    dynamic emailtosend = new Email("newNotification_booking");
+                                    emailtosend.To = brokeremail;
+                                    emailtosend.From = "customercare@premiumgrealty.com";
+                                    emailtosend.subject = "New Booking added - PGR Agents Portal";
+                                    emailtosend.email = activeuser.Email;
+                                    emailtosend.broker = activeuser.Sys_Company.Name;
+                                    emailtosend.resource = newebinar.Title;
+                                    emailtosend.date = newebinar.Date.ToLongDateString() + " " + newebinar.Date.ToShortTimeString();
+                                    emailtosend.time = newebinar.Date_end.ToLongDateString() + " " + newebinar.Date_end.ToShortTimeString();
+                                    emailtosend.Send();
+                           
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+         
+                            }
+
+
+                        }
+                        db.SaveChanges();
+                    }
+
+                }
+                catch
+                {
+
+                }
 
 
                 var result = "SUCCESS";
@@ -2988,6 +3016,43 @@ namespace Realestate_portal.Controllers
 
                 }
 
+                //Resources for Brokers
+                List<Tb_Resources> lstresourcesBroker = new List<Tb_Resources>();
+
+                //RESOURCE TYPE: 1-Documents | 2- Scripts
+                if (r.Contains("Agent"))
+                {
+                    ViewBag.rol = "Agent";
+                    //lstresources = (from a in db.Tb_Resources where ((a.Type == "Documents Broker" || a.Type == "Scripts Broker" || a.Type == "Email Campaign Broker" || a.Type == "Text Campaign Broker")) select a).ToList();
+
+                }
+                else
+                {
+                    if (r.Contains("SA") && broker == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        ViewBag.rol = "Admin";
+
+                        if (broker == 0)
+                        {
+
+                            lstresourcesBroker = (from a in db.Tb_Resources where ((a.Type == "Documents Broker" || a.Type == "Scripts Broker" || a.Type == "Email Campaign Broker" || a.Type == "Text Campaign Broker")) select a).ToList();
+                        }
+                        else
+                        {
+                            ViewBag.rol = "SA";
+                            //lstresourcesBroker = (from a in db.Tb_Resources where ((a.Type == "Documents Broker" || a.Type == "Scripts Broker" || a.Type == "Email Campaign Broker" || a.Type == "Text Campaign Broker")) select a).ToList();
+                        }
+                    }
+
+
+                }
+                ViewBag.resourcesbroker = lstresourcesBroker;
+                ////
+
                 ViewBag.selbroker = broker;
 
                 var propertiesprojectedgains = (from f in db.Tb_Process where (f.ID_User == activeuser.ID_User && f.Stage == "UNDER CONTRACT") select f).ToList();
@@ -3151,7 +3216,7 @@ namespace Realestate_portal.Controllers
                         ViewBag.rol = "SA";
                         ViewBag.userdata = (from usd in db.Sys_Users where (usd.ID_Company == activeuser.ID_Company && usd.Roles.Contains("Admin")) select usd).FirstOrDefault();
                         var brokersel = (from b in db.Sys_Users where (b.ID_Company == activeuser.ID_Company && b.Roles.Contains("Admin")) select b).FirstOrDefault();
-                        RedirectToAction("Dashboard", "Portal", new { broker = brokersel.ID_Company });
+                        return RedirectToAction("Dashboard", "Portal", new { broker = brokersel.ID_Company });
                     }
                     else
                     {

@@ -53,13 +53,17 @@
                         <!--end slider-->
                         <!--end slider-->
                     </div>
-                    <div class="col-md-5 col-lg-4">
+                <div class="col-md-5 col-lg-4">
+                    @using (Html.BeginForm("Agregardetalle", "CustomResources", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
                         <h2>Edit your data</h2>
 
-                        <input type="text" class="form-control" placeholder="Company name" />
-                        <input type="text" class="form-control" placeholder="your name" />
-                        <input type="text" class="form-control" placeholder="cellphone" />
-                        <input type="text" class="form-control" placeholder="your email" />
+                        <input type="text" class="form-control" id="Company_name" name="Company_name" placeholder="Company name" />
+                        <input type="text" class="form-control" id="Name" name="Name" placeholder="your name" />
+                        <input type="text" class="form-control" id="Cellphone" name="Cellphone" placeholder="cellphone" />
+                        <input type="text" class="form-control" id="Email" name="Email" placeholder="your email" />
+                        <input type="hidden" class="form-control" id="Resource" name="Resource" value="ForSaleSign" />
                         <br />
 
                         <div class="text-block">
@@ -95,7 +99,7 @@
                             </li>
                         </ul>
                         <!--end accordion-->
-                        <form>
+                     
                             <div class="col-md-12">
                                 <div class="input-select">
                                     <select name="finish">
@@ -119,13 +123,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4">
-                                <input type="text" name="quantity" placeholder="QTY" />
+                                <input type="text" name="Quantity" id="Quantity" placeholder="QTY" />
                             </div>
                             <div class="col-md-6 col-lg-8">
                                 <button type="submit" class="btn btn--primary">Add To Cart</button>
                             </div>
-                        </form>
-                    </div>
+                    
+                    }
+                </div>
                 </div>
             <!--end of row-->
         </div>

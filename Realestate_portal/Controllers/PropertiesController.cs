@@ -374,7 +374,7 @@ namespace Realestate_portal.Controllers
                             //Enviamos correo para notificar
                             dynamic emailtosend = new Email("newNotification_propertyAgent");
                             emailtosend.To = user;
-                            emailtosend.From = "pgrwebsite2020@gmail.com";
+                            emailtosend.From = "customercare@premiumgrealty.com";
                             emailtosend.IDproperty = tb_Process.ID_Property;
                             emailtosend.property = tb_Process.Property;
                             emailtosend.listingtype = tb_Process.Description;

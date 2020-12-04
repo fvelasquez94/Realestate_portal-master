@@ -113,13 +113,13 @@ namespace Realestate_portal.Controllers
                     if (broker == 0)
                     {
                         // se utiliza id = 4 para registros no asignados
-                        lstAgentes = db.Sys_Users.Where(t => t.ID_User != 4 && t.ID_Company == activeuser.ID_Company).Include(t => t.Sys_Company).ToList();
+                        lstAgentes = db.Sys_Users.Where(t => t.ID_User != 4 && !t.Roles.Contains("Admin") && t.ID_Company == activeuser.ID_Company).Include(t => t.Sys_Company).ToList();
                     }
                     else
                     {
                         // se utiliza id = 4 para registros no asignados
                         ViewBag.rol = "SA";
-                        lstAgentes = db.Sys_Users.Where(t => t.ID_User != 4 && t.ID_Company == broker).Include(t => t.Sys_Company).ToList();
+                        lstAgentes = db.Sys_Users.Where(t => t.ID_User != 4 && !t.Roles.Contains("Admin") && t.ID_Company == broker).Include(t => t.Sys_Company).ToList();
 
                     }
                   
@@ -200,7 +200,7 @@ namespace Realestate_portal.Controllers
                 {
                     ViewBag.rol = "Admin";
                 }
-
+                ViewBag.activeuser = activeuser;
                 ViewBag.ID_Company = new SelectList(db.Sys_Company, "ID_Company", "Name");
                 return View();
             }
@@ -277,7 +277,7 @@ namespace Realestate_portal.Controllers
                         //Send the email
                         dynamic semail = new Email("newAgent");
                         semail.To = sys_Users.Email.ToString();
-                        semail.From = "pgrwebsite2020@gmail.com";
+                        semail.From = "customercare@premiumgrealty.com";
                         semail.user = sys_Users.Name + " " + sys_Users.LastName;
                         semail.email = sys_Users.Email;
                         semail.password = sys_Users.Password;
@@ -346,7 +346,7 @@ namespace Realestate_portal.Controllers
                 }
 
                 Sys_Users sys_Users = db.Sys_Users.Find(id);
-
+                ViewBag.activeuser = activeuser;
                 ViewBag.ID_Company = new SelectList(db.Sys_Company, "ID_Company", "Name", sys_Users.ID_Company);
                 return View(sys_Users);
 
@@ -498,6 +498,124 @@ namespace Realestate_portal.Controllers
 
             }
 
+
+
+        }
+
+
+        // GET: Users/Edit/5
+        public ActionResult EditAdminB(int? id, int brokerupd, string modulo, int broker = 0)
+        {
+
+            if (generalClass.checkSession())
+            {
+                Sys_Users activeuser = Session["activeUser"] as Sys_Users;
+
+                //HEADER
+                //ACTIVE PAGES
+                ViewData["Menu"] = "Portal";
+                ViewData["Page"] = "Users";
+                ViewBag.menunameid = "";
+                ViewBag.submenunameid = "";
+                List<string> s = new List<string>(activeuser.Department.Split(new string[] { "," }, StringSplitOptions.None));
+                ViewBag.lstDepartments = JsonConvert.SerializeObject(s);
+                List<string> r = new List<string>(activeuser.Roles.Split(new string[] { "," }, StringSplitOptions.None));
+                ViewBag.lstRoles = JsonConvert.SerializeObject(r);
+                //NOTIFICATIONS
+                DateTime now = DateTime.Today;
+                List<Sys_Notifications> lstAlerts = (from a in db.Sys_Notifications where (a.ID_user == activeuser.ID_User && a.Active == true) select a).OrderByDescending(x => x.Date).Take(4).ToList();
+                ViewBag.notifications = lstAlerts;
+                ViewBag.userID = activeuser.ID_User;
+                ViewBag.userName = activeuser.Name + " " + activeuser.LastName;
+
+                //Filtros SA
+
+                var lstCompanies = (from a in db.Sys_Company select a).ToList();
+                ViewBag.lstCompanies = lstCompanies;
+
+                ViewBag.rol = "";
+                ViewBag.modulo = modulo;
+
+                if (r.Contains("Agent"))
+                {
+                    ViewBag.rol = "Agent";
+                    var brokersel = (from b in db.Sys_Users where (b.ID_Company == activeuser.ID_Company && b.Roles.Contains("Admin")) select b).FirstOrDefault();
+                    ViewBag.userdata = (from usd in db.Sys_Users where (usd.ID_User == activeuser.ID_User) select usd).FirstOrDefault();
+
+                }
+                else
+                {
+                    if (r.Contains("SA") && broker == 0)
+                    {
+                        ViewBag.rol = "SA";
+                        ViewBag.userdata = (from usd in db.Sys_Users where (usd.ID_Company == activeuser.ID_Company) select usd).FirstOrDefault();
+                        var brokersel = (from b in db.Sys_Users where (b.ID_Company == activeuser.ID_Company && b.Roles.Contains("Admin")) select b).FirstOrDefault();
+                        RedirectToAction("Dashboard", "Portal", new { broker = brokersel.ID_Company });
+                    }
+                    else
+                    {
+                        ViewBag.rol = "Admin";
+                        if (broker == 0)
+                        {
+                            ViewBag.userdata = (from usd in db.Sys_Users where (usd.ID_User == activeuser.ID_User) select usd).FirstOrDefault();
+
+                        }
+                        else
+                        {
+
+                            ViewBag.rol = "SA";
+
+                            ViewBag.userdata = (from usd in db.Sys_Users where (usd.ID_Company == broker && usd.Roles.Contains("Admin")) select usd).FirstOrDefault();
+                            var brokersel = (from b in db.Sys_Users where (b.ID_Company == broker && b.Roles.Contains("Admin")) select b).FirstOrDefault();
+
+                        }
+                    }
+
+
+
+                }
+                ViewBag.selbroker = broker;
+                Sys_Users sys_Users = db.Sys_Users.Find(id);
+
+                ViewBag.ID_Company = new SelectList(db.Sys_Company, "ID_Company", "Name", sys_Users.ID_Company);
+                return View(sys_Users);
+
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Portal", new { access = false });
+
+            }
+
+
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAdminB(int ID_User, string Name,string Email,string Password,Boolean Active)
+        {
+            var sys_Users = db.Sys_Users.Find(ID_User);
+            try
+            {
+          
+                sys_Users.Name = Name;
+                sys_Users.Email = Email;
+                sys_Users.Password = Password;
+                sys_Users.Active = Active;
+                db.Entry(sys_Users).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["exito"] = "Data saved successfully.";
+                return RedirectToAction("Edit", "Sys_Company", new { id = sys_Users.ID_Company });
+
+            }
+            catch (Exception ex)
+            {
+                TempData["advertencia"] = "Something went wrong." + ex.Message;
+                return RedirectToAction("Edit", "Sys_Company", new { id = sys_Users.ID_Company });
+            }
 
 
         }

@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_CRM.cshtml";
+    Realestate_portal.Models.Sys_Users activeusr= (Realestate_portal.Models.Sys_Users)ViewBag.activeuser;
 }
 
 <div class="container-fluid">
@@ -367,7 +368,7 @@ else
                   <div class="form-group">
                       <label class="control-label col-md-2">Brokerage Name</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Brokerage_name, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Brokerage_name" value="@activeusr.Name" readonly />
                           @Html.ValidationMessageFor(model => model.Brokerage_name, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -375,7 +376,7 @@ else
                   <div class="form-group">
                       <label class="control-label col-md-2">Brokerage Address</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Brokerage_address, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Brokerage_address" value="@activeusr.Brokerage_address" readonly />
                           @Html.ValidationMessageFor(model => model.Brokerage_address, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -383,7 +384,7 @@ else
                   <div class="form-group">
                       <label class="control-label col-md-2">Broker Contact</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Broker_Contact, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Broker_Contact" value="@activeusr.Broker_Contact" readonly />
                           @Html.ValidationMessageFor(model => model.Broker_Contact, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -391,7 +392,7 @@ else
                   <div class="form-group">
                       <label class="control-label col-md-2">Broker License</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Broker_License, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Broker_License" value="@activeusr.Broker_License" readonly />
                           @Html.ValidationMessageFor(model => model.Broker_License, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -417,7 +418,7 @@ else
                   <div class="form-group" style="display:none">
                       <label class="control-label col-md-2">Brokerage Name</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Brokerage_name, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Brokerage_address" value="@activeusr.Brokerage_address" readonly />
                           @Html.ValidationMessageFor(model => model.Brokerage_name, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -425,7 +426,7 @@ else
                   <div class="form-group" style="display:none">
                       <label class="control-label col-md-2">Brokerage Address</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Brokerage_address, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Brokerage_address" value="@activeusr.Brokerage_address" readonly />
                           @Html.ValidationMessageFor(model => model.Brokerage_address, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -433,7 +434,7 @@ else
                   <div class="form-group" style="display:none">
                       <label class="control-label col-md-2">Broker Contact</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Broker_Contact, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Broker_Contact" value="@activeusr.Broker_Contact" readonly />
                           @Html.ValidationMessageFor(model => model.Broker_Contact, "", new { @class = "text-danger" })
                       </div>
                   </div>
@@ -441,7 +442,7 @@ else
                   <div class="form-group" style="display:none">
                       <label class="control-label col-md-2">Broker License</label>
                       <div class="col-md-10">
-                          @Html.EditorFor(model => model.Broker_License, new { htmlAttributes = new { @class = "form-control" } })
+                          <input type="text" class="form-control" name="Broker_License" value="@activeusr.Broker_License" readonly />
                           @Html.ValidationMessageFor(model => model.Broker_License, "", new { @class = "text-danger" })
                       </div>
                   </div>

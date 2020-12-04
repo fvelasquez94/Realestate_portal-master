@@ -17,6 +17,9 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+
 
 public partial class Realstate_agentsEntities : DbContext
 {
@@ -63,6 +66,19 @@ public partial class Realstate_agentsEntities : DbContext
     public virtual DbSet<Tb_Network> Tb_Network { get; set; }
 
     public virtual DbSet<Tb_Options> Tb_Options { get; set; }
+
+    public virtual DbSet<crTb_OrderDetails> crTb_OrderDetails { get; set; }
+
+    public virtual DbSet<crTb_Orders> crTb_Orders { get; set; }
+
+    public virtual DbSet<Tb_TemplatesCatalogo> Tb_TemplatesCatalogo { get; set; }
+
+
+    public virtual ObjectResult<list_orders_Result> list_orders()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<list_orders_Result>("list_orders");
+    }
 
 }
 

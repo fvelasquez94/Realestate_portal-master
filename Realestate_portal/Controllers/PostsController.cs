@@ -211,7 +211,34 @@ namespace Realestate_portal.Controllers
 
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Posts");
+
+
+            try
+            {//Enviamos notificaciones  a todos los agentes del broker
+                var agents = (from a in db.Sys_Users where (a.Active == true && a.ID_Company== activeuser.ID_Company) select a).ToList();
+
+                if (agents.Count > 0)
+                {
+                    foreach (var item in agents)
+                    {
+                        Sys_Notifications newnotification = new Sys_Notifications();
+                        newnotification.Active = true;
+                        newnotification.Date = DateTime.UtcNow;
+                        newnotification.Title = "New post from Broker.";
+                        newnotification.Description = "A new post from your Broker was added";
+                        newnotification.ID_user = item.ID_User;
+                        db.Sys_Notifications.Add(newnotification);
+                    }
+                    db.SaveChanges();
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            return RedirectToAction("Index", "Posts");
             
 
         }

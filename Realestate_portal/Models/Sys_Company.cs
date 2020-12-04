@@ -38,6 +38,12 @@ public partial class Sys_Company
 
         this.Tb_Network = new HashSet<Tb_Network>();
 
+        this.crTb_OrderDetails = new HashSet<crTb_OrderDetails>();
+
+        this.crTb_Orders = new HashSet<crTb_Orders>();
+
+        this.Tb_TemplatesCatalogo = new HashSet<Tb_TemplatesCatalogo>();
+
     }
 
 
@@ -84,6 +90,18 @@ public partial class Sys_Company
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tb_Network> Tb_Network { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<crTb_OrderDetails> crTb_OrderDetails { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<crTb_Orders> crTb_Orders { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tb_TemplatesCatalogo> Tb_TemplatesCatalogo { get; set; }
 
 }
 

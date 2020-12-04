@@ -264,7 +264,7 @@ namespace Realestate_portal.Controllers
                             //Enviamos correo para notificar
                             dynamic emailtosend = new Email("newNotification_lead");
                             emailtosend.To = item.Email;
-                            emailtosend.From = "pgrwebsite2020@gmail.com";
+                            emailtosend.From = "customercare@premiumgrealty.com";
                             emailtosend.IDproperty = newproperty.ID_Property;
                             emailtosend.property = newproperty.Address;
                             emailtosend.listingtype = newproperty.Description;
@@ -293,7 +293,7 @@ namespace Realestate_portal.Controllers
                     //Enviamos correo para notificar
                     dynamic emailtosend = new Email("newNotification_client");
                     emailtosend.To = newlead.Email;
-                    emailtosend.From = "pgrwebsite2020@gmail.com";
+                    emailtosend.From = "customercare@premiumgrealty.com";
                     emailtosend.IDproperty = newproperty.ID_Property;
                     emailtosend.property = newproperty.Address;
                     emailtosend.listingtype = newproperty.Description;
@@ -374,7 +374,7 @@ namespace Realestate_portal.Controllers
                             //Enviamos correo para notificar
                             dynamic emailtosend = new Email("newNotification_lead");
                             emailtosend.To = item.Email;
-                            emailtosend.From = "pgrwebsite2020@gmail.com";
+                            emailtosend.From = "customercare@premiumgrealty.com";
                             emailtosend.leadname = firstname + " " + lastname;
                             emailtosend.leademail = email;
 
@@ -399,7 +399,7 @@ namespace Realestate_portal.Controllers
                     //Enviamos correo para notificar
                     dynamic emailtosend = new Email("newNotification_client");
                     emailtosend.To = email;
-                    emailtosend.From = "pgrwebsite2020@gmail.com";
+                    emailtosend.From = "customercare@premiumgrealty.com";
 
                     emailtosend.subject = "Request information for Careers - Premium Group Realty NY";
                     emailtosend.Send();

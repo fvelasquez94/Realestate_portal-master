@@ -1,172 +1,359 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout_CD.cshtml";
+    Layout = "~/Views/Shared/_Layout_store.cshtml";
 }
-<a id="start"></a>
-<div class="nav-container ">
-    <div class="bar bar--sm visible-xs">
+<!-- Start Slider area -->
+<div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
+    <!-- Start Single Slide -->
+    <div class="slide animation__style10 bg-image--1 fullscreen align__center--left">
         <div class="container">
             <div class="row">
-                <div class="col-3 col-md-2">
-                    <a href="#">
-                        <img  class="logo logo-dark" alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
-                        <img class="logo logo-light"  alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
-                    </a>
-                </div>
-                <div class="col-9 col-md-10 text-right">
-                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu2;hidden-xs hidden-sm">
-                        <i class="icon icon--sm stack-interface stack-menu"></i>
-                    </a>
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </div>
-    <!--end bar-->
-    <nav id="menu2" class="bar bar-2 hidden-xs bar--absolute bar--transparent">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 text-center text-left-sm hidden-xs order-lg-2">
-                    <div class="bar__module">
-                        <a href="#">
-                            <img class="logo logo-dark"  style="width:175px;height: 308px !important; max-height: 75px !important;" alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
-                            <img class="logo logo-light" style="width:175px; height: 308px !important; max-height: 75px !important;"  alt="logo" src="~/Content/pgrlogos/PGRLogo.png" />
-                        </a>
-                    </div>
-                    <!--end module-->
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </nav>
-    <!--end bar-->
-</div>
-<div class="main-container">
-    <section class="cover height-80 imagebg text-center parallax" data-overlay="5">
-        <div class="background-image-holder background--top">
-            <img alt="background" src="~/Content/assetsPD/img/blog-7.jpg" />
-        </div>
-        <div class="container pos-vertical-center">
-            <div class="row">
-                <div class="col-md-8">
-      
-                    <h3>
-                        Create your custom documents using our resources templates
-                    </h3>
-                    <a class="btn btn--primary type--uppercase" href="@Url.Action("Step_one","CustomResources")">
-                        <span class="btn__text">
-                            Start now
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </section>
-    <section class="border--bottom space--xxs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="modal-instance">
-                        <a class="btn type--uppercase modal-trigger" href="#">
-                            <span class="btn__text">
-                                &#9654; How to use
-                            </span>
-                        </a>
-                        <div class="modal-container">
-                            <div class="modal-content bg-dark" data-width="60%" data-height="60%">
-                                <iframe data-src="https://www.youtube.com/embed/6p45ooZOOPo?autoplay=1" allowfullscreen="allowfullscreen"></iframe>
-                            </div>
-                            <!--end of modal-content-->
+                <div class="col-lg-12">
+                    <div class="slider__content">
+                        <div class="contentbox" style="margin-bottom: -349px !important;">
+                            
+                            <h2><span>Broker?</span> Build your</h2>
+                            <h2>favourite <span>resources </span></h2>
+                            <h2>from here </h2>
+                           
                         </div>
-                        <!--end of modal-container-->
                     </div>
-                    <!--end of modal instance-->
-                    <span class="block--xs">See how you can create your customs designs using our own resource templates</span>
                 </div>
             </div>
-            <!--end of row-->
         </div>
-        <!--end of container-->
-    </section>
-    <section class="text-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-8">
-                    <h2>Steps to build your custom resources</h2>
-                    <p class="lead">
-                        Lorem ipsum isrip lupus umpseum lorem lorem bisu dubu
-                    </p>
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </section>
-    <section class="text-center">
+    </div>
+
+    <!-- End Single Slide -->
+    @*<!-- Start Single Slide -->
+    <div class="slide animation__style10 bg-image--7 fullscreen align__center--left">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="feature feature-6">
-                        <i class="icon icon--lg icon-Laughing color--primary"></i>
-                        <h4>Select a template</h4>
-                        <p>
-                            Stack comes with integration for Mail Chimp and Campaign Monitor forms - ideal for launching modern marketing campaigns
-                        </p>
+                <div class="col-lg-12">
+                    <div class="slider__content">
+                        <div class="contentbox">
+                            <h2> <span>Real Estate Agent? Resources</span></h2>
+                            <h2>designed by your <span>Broker </span></h2>
+                            <h2>from <span>Here </span></h2>
+                            <a class="shopbtn" href="#">shop now</a>
+                        </div>
                     </div>
-                    <!--end feature-->
-                </div>
-                <div class="col-md-4">
-                    <div class="feature feature-6">
-                        <i class="icon icon--lg icon-Medical-Sign color--primary"></i>
-                        <h4>Edit and customize</h4>
-                        <p>
-                            Stack comes with integration for Mail Chimp and Campaign Monitor forms - ideal for launching modern marketing campaigns
-                        </p>
-                    </div>
-                    <!--end feature-->
-                </div>
-                <div class="col-md-4">
-                    <div class="feature feature-6">
-                        <i class="icon icon--lg icon-Finger-Print color--primary"></i>
-                        <h4>Confirm your order</h4>
-                        <p>
-                            Stack comes with integration for Mail Chimp and Campaign Monitor forms - ideal for launching modern marketing campaigns
-                        </p>
-                    </div>
-                    <!--end feature-->
                 </div>
             </div>
-            <!--end of row-->
         </div>
-        <!--end of container-->
-    </section>
-
-
-    <footer class="text-center space--sm footer-5  ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="@Url.Action("Dashboard","Portal")">Back to the App</a>
-
-                    <div>
-                        <img alt="Image" class="flag" src="~/Content/pgrlogos/PGRLogo.png" /><br />
-                        <span class="type--fine-print">Powered by Premium Group Realty NY</span>
-
-                    </div>
-
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </footer>
+    </div>
+    <!-- End Single Slide -->*@
 </div>
-<!--<div class="loader"></div>-->
-<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
-    <i class="stack-interface stack-up-open-big"></i>
-</a>
+<!-- End Slider area -->
+<!-- Start BEst Seller Area -->
+<section class="wn__product__area brown--color pt--80  pb--30">
+    <div class="container">
+        <div class="row">
+            <a class="shopbtn" href="@Url.Action("Step_one","CustomResources")">start now</a>
+            <div class="col-lg-12">
+                <div class="section__title text-center">
+                    <h2 class="title__be--2">Create your own  <span class="color--theme">resources</span></h2>
+                    <p>Create custom resources using our web builder for your real estate agents </p>
+                </div>
+            </div>
+        </div>
+        <!-- Start Single Tab Content -->
+        <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
+            <!-- Start Single Product -->
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img" ><img src="~/Content/assetsStore/images/templates/businesscards/blackandgold.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Business Card</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Start Single Product -->
+            <!-- Start Single Product -->
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img" ><img src="~/Content/assetsStore/images/templates/DoorHanger/redwhitegray.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Door Hanger</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img" ><img src="~/Content/assetsStore/images/templates/Flyer/bluewhite.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Flyer</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img"><img src="~/Content/assetsStore/images/templates/ForSaleSign/red.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">For Sale Sign</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img"><img src="~/Content/assetsStore/images/templates/FrameSign/blackandgold.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Frame Sign</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img" ><img src="~/Content/assetsStore/images/templates/OpenHouseSign/redwhitegray.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Open House Sign</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img" ><img src="~/Content/assetsStore/images/templates/Rider/bluewhite.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Rider</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product product__style--3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product__thumb">
+                        <label class="first__img" ><img src="~/Content/assetsStore/images/templates/StandUpBanner/red.jpg" alt="product image"></label>
+
+                        <div class="hot__box">
+                            <span class="hot-label">Stand Up Banner</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Single Tab Content -->
+    </div>
+</section>
+<!-- Start BEst Seller Area -->
+<!-- Start NEwsletter Area -->
+@*<section class="wn__newsletter__area bg-image--2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-5 col-md-12 col-12 ptb--150">
+                <div class="section__title text-center">
+                    <h2>Stay With Us</h2>
+                </div>
+                <div class="newsletter__block text-center">
+                    <p>Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive offers.</p>
+                    <form action="#">
+                        <div class="newsletter__box">
+                            <input type="email" placeholder="Enter your e-mail">
+                            <button>Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+<!-- End NEwsletter Area -->
+
+<!-- Start Recent Post Area -->
+<section class="wn__recent__post bg--gray ptb--80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section__title text-center">
+                    <h2 class="title__be--2">Easy <span class="color--theme">Steps</span></h2>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered lebmid alteration in some ledmid form</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt--50">
+            <div class="col-md-6 col-lg-4 col-sm-12">
+                <div class="post__itam">
+                    <div class="content">
+                        <h3><a href="blog-details.html">1. Choose a template to start working</a></h3>
+                        <p>We are proud to announce the very first the edition of the frankfurt news.We are proud to announce the very first of  edition of the fault frankfurt news for us.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+                <div class="post__itam">
+                    <div class="content">
+                        <h3><a href="blog-details.html">2. Drag and drop elements and edit them</a></h3>
+                        <p>We are proud to announce the very first the edition of the frankfurt news.We are proud to announce the very first of  edition of the fault frankfurt news for us.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+                <div class="post__itam">
+                    <div class="content">
+                        <h3><a href="blog-details.html">3. Save your custom template for your Real Estate Agents </a></h3>
+                        <p>We are proud to announce the very first the edition of the frankfurt news.We are proud to announce the very first of  edition of the fault frankfurt news for us.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Recent Post Area -->
+
+<!-- Footer Area -->
+<footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
+    <div class="footer-static-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__widget footer__menu">
+                        <div class="ft__logo">
+                            <a href="#">
+                                <img src="~/Content/pgrlogos/PGRLogo.png" alt="logo" style="width:100px">
+                            </a>
+                            <p></p>
+                        </div>
+                        <div class="footer__content">
+           
+                            <ul class="mainmenu d-flex justify-content-center">
+                                <li><a href="index.html">Back to Agents App</a></li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright__wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="copyright">
+                        <div class="copy__right__inner text-left">
+                            <p>Copyright <i class="fa fa-copyright"></i> <a href="#">Premium Group Realty NY.</a> All Rights Reserved</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="payment text-right">
+                        <img src="images/icons/payment.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- //Footer Area -->
+<!-- QUICKVIEW PRODUCT -->
+<div id="quickview-wrapper">
+    <!-- Modal -->
+    <div class="modal fade" id="productmodal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal__container" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-product">
+                        <!-- Start product images -->
+                        <div class="product-images">
+                            <div class="main-image images">
+                                <img alt="big images" src="images/product/big-img/1.jpg">
+                            </div>
+                        </div>
+                        <!-- end product images -->
+                        <div class="product-info">
+                            <h1>Simple Fabric Bags</h1>
+                            <div class="rating__and__review">
+                                <ul class="rating">
+                                    <li><span class="ti-star"></span></li>
+                                    <li><span class="ti-star"></span></li>
+                                    <li><span class="ti-star"></span></li>
+                                    <li><span class="ti-star"></span></li>
+                                    <li><span class="ti-star"></span></li>
+                                </ul>
+                                <div class="review">
+                                    <a href="#">4 customer reviews</a>
+                                </div>
+                            </div>
+                            <div class="price-box-3">
+                                <div class="s-price-box">
+                                    <span class="new-price">$17.20</span>
+                                    <span class="old-price">$45.00</span>
+                                </div>
+                            </div>
+                            <div class="quick-desc">
+                                Designed for simplicity and made from high quality materials. Its sleek geometry and material combinations creates a modern look.
+                            </div>
+                            <div class="select__color">
+                                <h2>Select color</h2>
+                                <ul class="color__list">
+                                    <li class="red"><a title="Red" href="#">Red</a></li>
+                                    <li class="gold"><a title="Gold" href="#">Gold</a></li>
+                                    <li class="orange"><a title="Orange" href="#">Orange</a></li>
+                                    <li class="orange"><a title="Orange" href="#">Orange</a></li>
+                                </ul>
+                            </div>
+                            <div class="select__size">
+                                <h2>Select size</h2>
+                                <ul class="color__list">
+                                    <li class="l__size"><a title="L" href="#">L</a></li>
+                                    <li class="m__size"><a title="M" href="#">M</a></li>
+                                    <li class="s__size"><a title="S" href="#">S</a></li>
+                                    <li class="xl__size"><a title="XL" href="#">XL</a></li>
+                                    <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
+                                </ul>
+                            </div>
+                            <div class="social-sharing">
+                                <div class="widget widget_socialsharing_widget">
+                                    <h3 class="widget-title-modal">Share this product</h3>
+                                    <ul class="social__net social__net--2 d-flex justify-content-start">
+                                        <li class="facebook"><a href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
+                                        <li class="linkedin"><a href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                        <li class="pinterest"><a href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                        <li class="tumblr"><a href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="addtocart-btn">
+                                <a href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END QUICKVIEW PRODUCT -->

@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "New Agent";
     Layout = "~/Views/Shared/_CRM.cshtml";
+    Realestate_portal.Models.Sys_Users activeus = (Realestate_portal.Models.Sys_Users)ViewBag.activeuser;
 }
 
 <div class="container-fluid">
@@ -42,7 +43,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required="required" } })
                                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -50,7 +51,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Last Name</label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -58,7 +59,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -66,7 +67,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -105,31 +106,34 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Brokerage Name</label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Brokerage_name, new { htmlAttributes = new { @class = "form-control" } })
+                                <input type="text" class="form-control" name="Brokerage_name" value="@activeus.Name" readonly/>
                                 @Html.ValidationMessageFor(model => model.Brokerage_name, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Brokerage Address</label>
+                            <label class="control-label col-md-12">Brokerage Address</label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Brokerage_address, new { htmlAttributes = new { @class = "form-control" } })
+          
+                                <input type="text" class="form-control" name="Brokerage_address" value="@activeus.Brokerage_address" readonly />
                                 @Html.ValidationMessageFor(model => model.Brokerage_address, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Broker Contact</label>
+                            <label class="control-label col-md-12">Broker Contact</label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Broker_Contact, new { htmlAttributes = new { @class = "form-control" } })
+                           
+                                <input type="text" class="form-control" name="Broker_Contact" value="@activeus.Broker_Contact" readonly />
                                 @Html.ValidationMessageFor(model => model.Broker_Contact, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Broker License</label>
+                            <label class="control-label col-md-12">Broker License</label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Broker_License, new { htmlAttributes = new { @class = "form-control" } })
+
+                                <input type="text" class="form-control" name="Broker_License" value="@activeus.Broker_License" readonly />
                                 @Html.ValidationMessageFor(model => model.Broker_License, "", new { @class = "text-danger" })
                             </div>
                         </div>

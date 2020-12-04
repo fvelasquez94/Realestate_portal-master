@@ -91,9 +91,9 @@
                                     </div>
 
                                     <div class="row mt-5 mr-0 ml-0">
-                                        @if (Model.Where(a => a.Type == "Documents").Count() > 0)
+                                        @if (Model.Where(a => a.Type == "Documents Broker").Count() > 0)
                     {
-                        foreach (var item in Model.Where(a => a.Type == "Documents"))
+                        foreach (var item in Model.Where(a => a.Type == "Documents Broker"))
                         {
                             <div id="id_@item.ID_Resource" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 justify-content-center mb-4 sortableDocs" style="display:flex">
                                 <div class="media w-100">
@@ -167,9 +167,9 @@ else
                                         </div>
                                     </div>
                                     <div class="row mt-5 mr-0 ml-0">
-                                        @if (Model.Where(a => a.Type == "Scripts").Count() > 0)
+                                        @if (Model.Where(a => a.Type == "Scripts Broker").Count() > 0)
                     {
-                        foreach (var item in Model.Where(a => a.Type == "Scripts"))
+                        foreach (var item in Model.Where(a => a.Type == "Scripts Broker"))
                         {
                             <div id="idscr_@item.ID_Resource" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 justify-content-center mb-4 sortableScripts" style="display:flex">
                                 <div class="media w-100">
@@ -234,9 +234,9 @@ else
                              
                                     </div>
                                     <div class="row mt-5 mr-0 ml-0">
-                                        @if (Model.Where(a => a.Type == "EMAIL CAMPAIGN").Count() > 0)
+                                        @if (Model.Where(a => a.Type == "EMAIL CAMPAIGN Broker").Count() > 0)
                     {
-                        foreach (var item in Model.Where(a => a.Type == "EMAIL CAMPAIGN"))
+                        foreach (var item in Model.Where(a => a.Type == "EMAIL CAMPAIGN Broker"))
                         {
                             <div id="idscr_@item.ID_Resource" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 justify-content-center mb-4 sortableScripts" style="display:flex">
                                 <div class="media w-100">
@@ -289,9 +289,9 @@ else
               
                                     </div>
                                     <div class="row mt-5 mr-0 ml-0">
-                                        @if (Model.Where(a => a.Type == "TEXT CAMPAIGN").Count() > 0)
+                                        @if (Model.Where(a => a.Type == "TEXT CAMPAIGN Broker").Count() > 0)
                     {
-                        foreach (var item in Model.Where(a => a.Type == "TEXT CAMPAIGN"))
+                        foreach (var item in Model.Where(a => a.Type == "TEXT CAMPAIGN Broker"))
                         {
                             <div id="idscr_@item.ID_Resource" class="col-xl-3 col-lg-3 col-md-3 col-sm-6 justify-content-center mb-4 sortableScripts" style="display:flex">
                                 <div class="media w-100">

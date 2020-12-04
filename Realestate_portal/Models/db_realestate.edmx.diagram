@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfbd974f442b48808137e488c611a8b1" Name="Diagram1" ZoomLevel="60">
+      <Diagram DiagramId="bfbd974f442b48808137e488c611a8b1" Name="Diagram1" ZoomLevel="61">
         <EntityTypeShape EntityType="Realstate_agentsModel.Sys_Company" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Realstate_agentsModel.Sys_Users" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="Realstate_agentsModel.FK_Sys_Users_Sys_Company" ManuallyRouted="false" />
@@ -32,6 +32,13 @@
         <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Network" Width="1.5" PointX="3" PointY="43.375" />
         <AssociationConnector Association="Realstate_agentsModel.FK_Tb_Network_Sys_Company" />
         <EntityTypeShape EntityType="Realstate_agentsModel.Tb_Options" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.crTb_OrderDetails" Width="1.5" PointX="11.625" PointY="1" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.crTb_Orders" Width="1.5" PointX="9.375" PointY="2.25" />
+        <AssociationConnector Association="Realstate_agentsModel.FK_crTb_OrderDetails_crTb_Orders" />
+        <AssociationConnector Association="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2B0A656D" />
+        <AssociationConnector Association="Realstate_agentsModel.FK__crTb_Orde__ID_Co__2A164134" />
+        <EntityTypeShape EntityType="Realstate_agentsModel.Tb_TemplatesCatalogo" Width="1.5" PointX="3" PointY="47.875" />
+        <AssociationConnector Association="Realstate_agentsModel.FK__Tb_Templa__ID_Co__29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

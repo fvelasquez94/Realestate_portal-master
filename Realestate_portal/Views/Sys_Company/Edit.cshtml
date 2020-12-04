@@ -92,6 +92,7 @@
                             <td>ID</td>
                             <td>Email</td>
                             <td>Password</td>
+                            <td></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +101,7 @@
                             <td>@item.ID_User</td>
                             <td>@item.Email</td>
                             <td>@item.Password</td>
+                            <td><a href="@Url.Action("EditAdminB","Users", new { id=item.ID_User, brokerupd=Model.ID_Company,modulo="" })">Edit</a></td>
                         </tr>
                         }
 
