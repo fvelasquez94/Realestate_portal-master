@@ -270,32 +270,32 @@ namespace Realestate_portal.Controllers
                 db.Sys_Users.Add(sys_Users);
                 db.SaveChanges();
 
+
                 try
                 {
                     if (sys_Users.Email != "")
                     {
-                        //Send the email
-                        dynamic semail = new Email("newAgent");
-                        semail.To = sys_Users.Email.ToString();
-                        semail.From = "customercare@premiumgrealty.com";
-                        semail.user = sys_Users.Name + " " + sys_Users.LastName;
-                        semail.email = sys_Users.Email;
-                        semail.password = sys_Users.Password;
-
-                        semail.Send();
-                        return RedirectToAction("Index");
+                        //Enviamos correo para notificar
+                        dynamic emailtosend = new Email("newBroker");
+                        emailtosend.To = sys_Users.Email.ToString();
+                        emailtosend.From = "customercare@premiumgrealty.com";
+                        emailtosend.correo = sys_Users.Email;
+                        emailtosend.contrasena = sys_Users.Password;
+                        emailtosend.Send();
                     }
                     else
                     {
                         return RedirectToAction("Index");
                     }
 
-                    //FIN email
+
                 }
                 catch (Exception ex)
                 {
-                    return RedirectToAction("Index");
+
                 }
+
+
 
 
            
@@ -656,6 +656,7 @@ namespace Realestate_portal.Controllers
                 if (sys_Users.Secundary_telephone == null) { sys_Users.Secundary_telephone = ""; }
                 if (sys_Users.Main_telephone == null) { sys_Users.Main_telephone = ""; }
                 if (sys_Users.Position == null) { sys_Users.Position = ""; }
+                if (sys_Users.Gender == null) { sys_Users.Gender = ""; }
 
                     db.Entry(sys_Users).State = EntityState.Modified;
                     db.SaveChanges();

@@ -228,8 +228,10 @@ namespace Realestate_portal.Controllers
                         dynamic emailtosend = new Email("newBroker");
                         emailtosend.To = email;
                         emailtosend.From = "customercare@premiumgrealty.com";
+                        emailtosend.correo = nuevoUsuario.Email;
+                        emailtosend.contrasena = nuevoUsuario.Password;
                         emailtosend.Send();
-                    
+                 
                     }
                     else
                     {

@@ -465,13 +465,7 @@ namespace Realestate_portal.Controllers
                 Tb_Customers tb_Customers = db.Tb_Customers.Find(id);
 
                 ViewBag.ID_Company = new SelectList(db.Sys_Company, "ID_Company", "Name", tb_Customers.ID_Company);
-                ViewBag.ID_User = new SelectList((from t in db.Sys_Users
-                                                 // where (t.Roles.Contains("Agent"))
-                                                  select new
-                                                  {
-                                                      ID = t.ID_User,
-                                                      FullName = t.Name + " " + t.LastName
-                                                  }), "ID", "FullName", tb_Customers.ID_User);
+        
 
 
 
@@ -486,7 +480,13 @@ namespace Realestate_portal.Controllers
                 if (r.Contains("Agent"))
                 {
                     ViewBag.rol = "Agent";
-
+                    ViewBag.ID_User = new SelectList((from t in db.Sys_Users
+                                                          // where (t.Roles.Contains("Agent"))
+                                                      select new
+                                                      {
+                                                          ID = t.ID_User,
+                                                          FullName = t.Name + " " + t.LastName
+                                                      }), "ID", "FullName", tb_Customers.ID_User);
                 }
                 else
                 {
@@ -496,12 +496,26 @@ namespace Realestate_portal.Controllers
                         ViewBag.userdata = (from usd in db.Sys_Users where (usd.ID_Company == activeuser.ID_Company) select usd).FirstOrDefault();
                         var brokersel = (from b in db.Sys_Users where (b.ID_Company == activeuser.ID_Company && b.Roles.Contains("Admin")) select b).FirstOrDefault();
                         RedirectToAction("Dashboard", "Portal", new { broker = brokersel.ID_Company });
+                        ViewBag.ID_User = new SelectList((from t in db.Sys_Users
+                                                              // where (t.Roles.Contains("Agent"))
+                                                          select new
+                                                          {
+                                                              ID = t.ID_User,
+                                                              FullName = t.Name + " " + t.LastName
+                                                          }), "ID", "FullName", tb_Customers.ID_User);
                     }
                     else
                     {
                         ViewBag.rol = "Admin";
                         if (broker == 0)
                         {
+                            ViewBag.ID_User = new SelectList((from t in db.Sys_Users
+                                                                  where (t.ID_Company == activeuser.ID_Company || t.ID_User==4)
+                                                              select new
+                                                              {
+                                                                  ID = t.ID_User,
+                                                                  FullName = t.Name + " " + t.LastName
+                                                              }), "ID", "FullName", tb_Customers.ID_User);
                         }
                         else
                         {

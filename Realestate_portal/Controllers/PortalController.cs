@@ -98,7 +98,7 @@ namespace Realestate_portal.Controllers
                                 emailtosend.To = brokeremail;
                                 emailtosend.From = "customercare@premiumgrealty.com";
                                 emailtosend.subject = "New documents Package from " + activeuser.Name + " " + activeuser.LastName + "  - PGR Agents Portal";
-                                emailtosend.Attach(new Attachment(zippackage));
+                                //emailtosend.Attach(new Attachment(zippackage));
                                 emailtosend.Send();
                                 TempData["exito"] = "Data saved and sent successfully.";
                             }
@@ -746,7 +746,7 @@ namespace Realestate_portal.Controllers
                                                           select new
                                                           {
                                                               ID = t.ID_Process,
-                                                              FullName = t.Address + " | Customer: " + t.Tb_Customers.Name + " " + t.Tb_Customers.LastName
+                                                              FullName = t.Address + " | CUSTOMER: " + t.Tb_Customers.Name + " " + t.Tb_Customers.LastName
                                                           }), "ID", "FullName");
                     
                     lstpackages = (from a in db.Tb_Docpackages where (a.ID_User == activeuser.ID_User && a.original == false) select a).ToList();
@@ -774,7 +774,7 @@ namespace Realestate_portal.Controllers
                                                                   select new
                                                                   {
                                                                       ID = t.ID_Process,
-                                                                      FullName = t.Address + " | Customer: " + t.Tb_Customers.Name + " " + t.Tb_Customers.LastName
+                                                                      FullName = t.Address + " | CUSTOMER: " + t.Tb_Customers.Name + " " + t.Tb_Customers.LastName
                                                                   }), "ID", "FullName");
                         }
                         else
@@ -787,7 +787,7 @@ namespace Realestate_portal.Controllers
                                                                   select new
                                                                   {
                                                                       ID = t.ID_Process,
-                                                                      FullName = t.Address + " | Customer: " + t.Tb_Customers.Name + " " + t.Tb_Customers.LastName
+                                                                      FullName = t.Address + " | CUSTOMER: " + t.Tb_Customers.Name + " " + t.Tb_Customers.LastName
                                                                   }), "ID", "FullName");
                         }
 
@@ -2555,13 +2555,14 @@ namespace Realestate_portal.Controllers
                         headerpack.Total_docsf = headerpack.Total_docsf - 1;
                         headerpack.Last_update = DateTime.UtcNow;
                     }
-
+                    Random rnd = new Random();
                     for (int i = 0; i < Request.Files.Count; i++)
                     {
+
                         var file = Request.Files[i];
                         extension = Path.GetExtension(Request.Files[i].FileName).ToLower();
                         size = ConvertBytesToMegabytes(Request.Files[i].ContentLength).ToString("0.00");
-                        fileName = Path.GetFileName(file.FileName);
+                        fileName = DateTime.Now.Hour.ToString() + rnd.Next(52).ToString() + DateTime.Now.Day + rnd.Next(3981) + extension;     // creates a number between 0 and 51;//Path.GetFileName(file.FileName);
 
                         path = Path.Combine(Server.MapPath("~/Content/Uploads/DocumentsPackages/"), fileName);
                         file.SaveAs(path);

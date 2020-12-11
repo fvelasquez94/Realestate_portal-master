@@ -230,7 +230,7 @@
           </Key>
           <Property Name="ID_Post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="Content_post" Type="text" Nullable="false" />
+          <Property Name="Content_post" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Url_image" Type="varchar(max)" Nullable="false" />
           <Property Name="Lat" Type="varchar(max)" Nullable="false" />
           <Property Name="Lng" Type="varchar(max)" Nullable="false" />
@@ -1118,7 +1118,7 @@
           </Key>
           <Property Name="ID_Post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Content_post" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content_post" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Url_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Lat" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Lng" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />

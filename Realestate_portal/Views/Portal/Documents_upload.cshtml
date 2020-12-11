@@ -138,13 +138,13 @@ else if (ViewBag.rol == "Agent")
                 <form id="htmlform" method="post">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-7">
+                            @*<div class="col-7">
                                 <div class="form-group">
                                     <label>Package Name *</label>
                                     <input type="text" class="form-control" id="title" placeholder="Name to identify easily your documents package" required />
                                 </div>
-                            </div>
-                            <div class="col-5">
+                            </div>*@
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label>Category *</label>
                                     <select id="category" class="form-control" required>
@@ -189,7 +189,7 @@ else if (ViewBag.rol == "Agent")
 
                         var formData = new FormData();
 
-                        var title = $("#title").val();
+                        var title = $("#ID_Property option:selected").html();//$("#title").val();
                         var idcategory = $("#category").val();
                         var customer = 0;
                         var property = $('#ID_Property').val();
